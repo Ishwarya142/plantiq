@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* PlantIQ Nature-Inspired Color System */
+    --background: 80 25% 98%;
+    --foreground: 150 30% 15%;
+
+    --card: 80 20% 99%;
+    --card-foreground: 150 30% 15%;
+
+    --popover: 80 20% 99%;
+    --popover-foreground: 150 30% 15%;
+
+    /* Deep Forest Green - Primary */
+    --primary: 145 45% 28%;
+    --primary-foreground: 80 25% 98%;
+
+    /* Soft Sage - Secondary */
+    --secondary: 135 25% 90%;
+    --secondary-foreground: 145 40% 25%;
+
+    /* Muted Sage */
+    --muted: 130 15% 92%;
+    --muted-foreground: 140 15% 45%;
+
+    /* Fresh Mint - Accent */
+    --accent: 160 50% 85%;
+    --accent-foreground: 155 45% 20%;
+
+    /* Warm Amber - Destructive/Alert */
+    --destructive: 35 90% 55%;
+    --destructive-foreground: 35 100% 15%;
+
+    /* Soft borders */
+    --border: 130 20% 88%;
+    --input: 130 20% 88%;
+    --ring: 145 45% 35%;
+
+    --radius: 1rem;
+
+    /* Custom PlantIQ tokens */
+    --plant-healthy: 145 60% 45%;
+    --plant-moderate: 45 85% 55%;
+    --plant-attention: 15 80% 55%;
+    --plant-gradient-start: 145 55% 35%;
+    --plant-gradient-end: 160 45% 55%;
+    
+    /* Soft shadows */
+    --shadow-soft: 0 4px 20px -4px hsl(145 30% 20% / 0.08);
+    --shadow-glow: 0 8px 30px -8px hsl(145 50% 30% / 0.15);
+    --shadow-card: 0 2px 12px -2px hsl(145 30% 20% / 0.06);
+
+    --sidebar-background: 130 20% 96%;
+    --sidebar-foreground: 150 30% 20%;
+    --sidebar-primary: 145 45% 28%;
+    --sidebar-primary-foreground: 80 25% 98%;
+    --sidebar-accent: 135 25% 90%;
+    --sidebar-accent-foreground: 145 40% 25%;
+    --sidebar-border: 130 20% 88%;
+    --sidebar-ring: 145 45% 35%;
+  }
+
+  .dark {
+    --background: 150 25% 8%;
+    --foreground: 130 20% 95%;
+
+    --card: 150 20% 12%;
+    --card-foreground: 130 20% 95%;
+
+    --popover: 150 20% 12%;
+    --popover-foreground: 130 20% 95%;
+
+    --primary: 145 50% 50%;
+    --primary-foreground: 150 30% 10%;
+
+    --secondary: 145 20% 18%;
+    --secondary-foreground: 135 30% 85%;
+
+    --muted: 145 15% 20%;
+    --muted-foreground: 130 15% 60%;
+
+    --accent: 155 35% 25%;
+    --accent-foreground: 150 40% 90%;
+
+    --destructive: 35 85% 45%;
+    --destructive-foreground: 35 100% 95%;
+
+    --border: 145 15% 20%;
+    --input: 145 15% 20%;
+    --ring: 145 50% 50%;
+
+    --sidebar-background: 150 20% 10%;
+    --sidebar-foreground: 130 20% 90%;
+    --sidebar-primary: 145 50% 50%;
+    --sidebar-primary-foreground: 150 30% 10%;
+    --sidebar-accent: 145 20% 18%;
+    --sidebar-accent-foreground: 135 30% 85%;
+    --sidebar-border: 145 15% 20%;
+    --sidebar-ring: 145 50% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Nunito', sans-serif;
+  }
+}
+
+@layer components {
+  .plant-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--plant-gradient-start)) 0%,
+      hsl(var(--plant-gradient-end)) 100%
+    );
+  }
+
+  .plant-gradient-soft {
+    background: linear-gradient(
+      135deg,
+      hsl(145 55% 35% / 0.1) 0%,
+      hsl(160 45% 55% / 0.15) 100%
+    );
+  }
+
+  .card-plant {
+    @apply bg-card rounded-2xl shadow-[var(--shadow-card)] border border-border/50 transition-all duration-300;
+  }
+
+  .card-plant:hover {
+    @apply shadow-[var(--shadow-glow)] -translate-y-0.5;
+  }
+
+  .status-healthy {
+    @apply bg-[hsl(var(--plant-healthy))] text-white;
+  }
+
+  .status-moderate {
+    @apply bg-[hsl(var(--plant-moderate))] text-white;
+  }
+
+  .status-attention {
+    @apply bg-[hsl(var(--plant-attention))] text-white;
+  }
+
+  .leaf-float {
+    animation: leafFloat 6s ease-in-out infinite;
+  }
+
+  .pulse-soft {
+    animation: pulseSoft 3s ease-in-out infinite;
+  }
+}
+
+@layer utilities {
+  @keyframes leafFloat {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    25% {
+      transform: translateY(-5px) rotate(2deg);
+    }
+    50% {
+      transform: translateY(-2px) rotate(-1deg);
+    }
+    75% {
+      transform: translateY(-8px) rotate(1deg);
+    }
+  }
+
+  @keyframes pulseSoft {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.85;
+      transform: scale(1.02);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes growIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.5s ease-out forwards;
+  }
+
+  .animate-grow-in {
+    animation: growIn 0.4s ease-out forwards;
+  }
+
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+}
